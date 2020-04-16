@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
 import authConfig from '../config/auth';
+import AppError from '../errors/AppError';
 
 interface Token {
   iat: number;
@@ -16,7 +17,7 @@ export default function (
 ): void {
   const authHeader = request.headers.authorization;
   if (!authHeader) {
-    throw new Error('Not authenticated.');
+    throw new AppError('Not authenticated.', 401);
   }
   const [, token] = authHeader.split(' ');
   try {
@@ -28,6 +29,6 @@ export default function (
     };
     next();
   } catch (err) {
-    throw new Error('Not authenticated.');
+    throw new AppError('Not authenticated.', 401);
   }
 }
