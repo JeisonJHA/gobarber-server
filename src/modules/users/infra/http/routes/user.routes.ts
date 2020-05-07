@@ -2,10 +2,10 @@ import { Router } from 'express';
 import { hash } from 'bcryptjs';
 import multer from 'multer';
 
-import CreateUserService from '../services/CreateUserService';
-import UpdateAvatarUserService from '../services/UpdateAvatarUserService';
+import CreateUserService from '@modules/users/services/CreateUserService';
+import uploadConfig from '@config/upload';
+import UpdateAvatarUserService from '@modules/users/services/UpdateAvatarUserService';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
-import uploadConfig from '../config/upload';
 
 const upload = multer(uploadConfig);
 const usersRouter = Router();
