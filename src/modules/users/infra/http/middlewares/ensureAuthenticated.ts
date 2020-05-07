@@ -4,7 +4,7 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 
-interface Token {
+interface IToken {
   iat: number;
   exp: number;
   sub: string;
@@ -22,7 +22,7 @@ export default function (
   const [, token] = authHeader.split(' ');
   try {
     const decoded = verify(token, authConfig.jwt.secret);
-    const { sub } = decoded as Token;
+    const { sub } = decoded as IToken;
 
     request.user = {
       id: sub,
