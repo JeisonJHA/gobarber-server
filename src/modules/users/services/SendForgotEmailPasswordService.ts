@@ -28,9 +28,9 @@ class SendForgotPasswordEmailService {
     if (!user) {
       throw new AppError('This e-mail has no registration');
     }
-    await this.userTokensRepository.generate(user.id);
+    const { token } = await this.userTokensRepository.generate(user.id);
 
-    await this.mailProvider.sendMail(email, 'Recuperação de e-mail');
+    await this.mailProvider.sendMail(email, `Recuperação de e-mail ${token}`);
   }
 }
 
