@@ -2,7 +2,6 @@ import { injectable, inject } from 'tsyringe';
 
 import { getHours } from 'date-fns';
 import IAppointmentRepository from '../repositories/IAppointmentRepository';
-// import User from '@modules/users/infra/typeorm/entities/User';
 
 interface IRequest {
   provider_id: string;
