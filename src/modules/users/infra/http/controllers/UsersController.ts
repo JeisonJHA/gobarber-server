@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { hash } from 'bcryptjs';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateUserService from '@modules/users/services/CreateUserService';
 
@@ -14,7 +15,7 @@ export default class UsersController {
       email,
       password: hashedPassword,
     });
-    delete user.password;
-    return res.send(user);
+
+    return res.send(classToClass(user));
   }
 }

@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import AppError from '@shared/errors/AppError';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
@@ -30,9 +31,9 @@ class UpdateAvatarUserService {
     }
     const fileName = await this.storageProvider.saveFile(avatarFilename);
     user.avatar = fileName;
-    delete user.password;
+
     await this.usersRepository.save(user);
-    return user;
+    return classToClass(user);
   }
 }
 
