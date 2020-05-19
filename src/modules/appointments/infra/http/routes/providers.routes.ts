@@ -6,15 +6,15 @@ import ProvidersController from '../controllers/ProvidersController';
 import ProviderDayAvailabilityController from '../controllers/ProviderDayAvailabilityController';
 import ProviderMonthAvailabilityController from '../controllers/ProviderMonthAvailabilityController';
 
-const appointmentRoutes = Router();
+const providerRoutes = Router();
 const providersController = new ProvidersController();
 const providerDayAvailabilityController = new ProviderDayAvailabilityController();
 const providerMonthAvailabilityController = new ProviderMonthAvailabilityController();
 
-appointmentRoutes.use(auth);
+providerRoutes.use(auth);
 
-appointmentRoutes.get('/', providersController.index);
-appointmentRoutes.get(
+providerRoutes.get('/', providersController.index);
+providerRoutes.get(
   '/:provider_id/day-availability',
   celebrate({
     [Segments.PARAMS]: {
@@ -23,7 +23,7 @@ appointmentRoutes.get(
   }),
   providerDayAvailabilityController.index
 );
-appointmentRoutes.get(
+providerRoutes.get(
   '/:provider_id/month-availability',
   celebrate({
     [Segments.PARAMS]: {
@@ -33,4 +33,4 @@ appointmentRoutes.get(
   providerMonthAvailabilityController.index
 );
 
-export default appointmentRoutes;
+export default providerRoutes;
