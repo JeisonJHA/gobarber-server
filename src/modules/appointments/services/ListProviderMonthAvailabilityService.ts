@@ -6,6 +6,8 @@ import {
   eachDayOfInterval,
   isSameDay,
   getDate,
+  isAfter,
+  endOfDay,
 } from 'date-fns';
 import IAppointmentRepository from '../repositories/IAppointmentRepository';
 
@@ -50,7 +52,8 @@ export default class ListProviderMonthAvailabilityService {
       });
       return {
         day: getDate(day),
-        available: appointmentsInDay.length < 10,
+        available:
+          isAfter(endOfDay(day), new Date()) && appointmentsInDay.length < 10,
       };
     });
     return availability;
