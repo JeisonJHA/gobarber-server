@@ -10,9 +10,9 @@ module.exports = [
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
-    "username": "postgres",
-    "password": "docker",
-    "database": "gostack_gobarber",
+    "username": process.env.POSTGRES_USER,
+    "password": process.env.POSTGRES_PASSWORD,
+    "database": process.env.POSTGRES_DB,
     "entities": [
       process.env.TYPEORM_POSTGRES_ENTITIES
     ],

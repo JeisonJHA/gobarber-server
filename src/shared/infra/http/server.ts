@@ -6,12 +6,13 @@ import { errors } from 'celebrate';
 import cors from 'cors';
 import 'express-async-errors';
 
+import '@shared/infra/typeorm';
+
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import routes from './routes';
 import rateLimiter from './middlewares/rateLimiter';
 
-import '@shared/infra/typeorm';
 import '@shared/container';
 
 const app = express();
@@ -36,4 +37,6 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
     .json({ status: 'error', message: 'Internal server error.' });
 });
 
-app.listen(3333, () => console.log('🚀'));
+app.listen(process.env.PORT, () =>
+  console.log(`Listening to the port: ${process.env.PORT} 🚀`)
+);
