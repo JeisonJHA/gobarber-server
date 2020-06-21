@@ -24,7 +24,7 @@ class UsersRepository implements IUserRepository {
     if (exceptUserId) {
       return this.ormRepository.find({
         where: {
-          user_id: Not(exceptUserId),
+          id: Not(exceptUserId),
         },
       });
     }
