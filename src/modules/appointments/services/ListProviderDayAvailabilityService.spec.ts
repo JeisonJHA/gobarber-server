@@ -18,17 +18,20 @@ describe('ListProviderDayAvailability', () => {
       user_id: 'user',
       date: new Date(2020, 4, 21, 8, 0, 0),
     });
+
     await fakeAppointmentRepository.create({
       provider_id: 'user',
       user_id: 'user',
       date: new Date(2020, 4, 21, 10, 0, 0),
     });
+
     const avalability = await listProviderDayAvailability.execute({
       provider_id: 'user',
       day: 21,
       month: 5,
       year: 2020,
     });
+
     expect(avalability).toEqual(
       expect.arrayContaining([
         { hour: 9, available: true },
