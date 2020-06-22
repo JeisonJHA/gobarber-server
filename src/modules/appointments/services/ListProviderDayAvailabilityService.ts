@@ -35,7 +35,6 @@ export default class ListProviderMonthAvailabilityService {
         year,
       }
     );
-
     const hourStart = 8;
     const eachHourArray = Array.from(
       { length: 10 },
@@ -46,7 +45,7 @@ export default class ListProviderMonthAvailabilityService {
       const hasAppointment = appointments.find(
         appointment => getHours(appointment.date) === hour
       );
-      const scheduleDay = new Date(year, month, day, hour);
+      const scheduleDay = new Date(year, month - 1, day, hour);
       return {
         hour,
         available: !hasAppointment && !isAfter(now, scheduleDay),
