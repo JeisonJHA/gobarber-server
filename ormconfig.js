@@ -27,8 +27,10 @@ module.exports = [
     "name": "mongo",
     "type": "mongodb",
     "host": "localhost",
-    "port": 27017,
-    "database": "gostack_gobarber",
+    "username": process.env.MONGODB_USERNAME,
+    "password": process.env.MONGODB_PASSWORD,
+    "port": process.env.MONGODB_PORT,
+    "database": process.env.MONGODB_DATABASE,
     "useUnifiedTopology": true,
     "entities": [
       process.env.TYPEORM_MONGO_ENTITIES
