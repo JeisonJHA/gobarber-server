@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
 import { errors } from 'celebrate';
-// import cors from 'cors';
+import cors from 'cors';
 import 'express-async-errors';
 
 import '@shared/infra/typeorm';
@@ -17,11 +17,11 @@ import '@shared/container';
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: process.env.APP_WEB_URL,
-//   })
-// );
+app.use(
+  cors({
+    origin: process.env.APP_WEB_URL,
+  })
+);
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(rateLimiter);
