@@ -1,29 +1,28 @@
 version: "3"
 services:
   mongo:
-    image: mongo
-    volumes:
-      - /data/db/mongo
+    image: bitnami/mongodb:latest
     ports:
       - "27017:27017"
+    environment:
+      MONGODB_USERNAME: gobarber
+      MONGODB_PASSWORD: docker
+      MONGODB_DATABASE: gobarber
 
   redis:
-    image: redis:alpine
+    image: bitnami/redis:latest
     volumes:
       - /data/db/redis
     ports:
       - "6379:6379"
     environment:
-      REDIS_HOST: localhost
-      REDIS_PORT: 6379
-      REDIS_PASS:
+      REDIS_PASSWORD: redis
 
   postgres:
-    image: postgres
+    image: bitnami/postgresql:latest
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USERNAME: postgres
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: gostack_gobarber
-      PGDATA: /data/db/postgres
+      POSTGRESQL_DATABASE: gobarber
+      POSTGRESQL_PASSWORD: postgres
+      POSTGRESQL_USERNAME: postgres
